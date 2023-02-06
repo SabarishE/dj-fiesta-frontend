@@ -7,7 +7,15 @@ import { Fragment, useEffect, useState } from "react";
 import { EventItem } from "components/EventItem";
 import { useRouter } from "next/router";
 
-export default function Home({ events }: { events: EventInterface[] }) {
+export default function Home({
+  events,
+  url,
+}: {
+  events: EventInterface[];
+  url: string;
+}) {
+  console.log("url >>", url);
+
   const [hydrated, setHydrated] = useState(false);
   const router = useRouter();
 
@@ -87,6 +95,6 @@ export async function getServerSideProps() {
   );
 
   return {
-    props: { events },
+    props: { events, url: API_URL },
   };
 }
