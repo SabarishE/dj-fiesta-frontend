@@ -19,7 +19,7 @@ export const Pagination = ({
             color="white"
             _hover={{}}
             _active={{}}
-            size={["sm", "md"]}
+            size="sm"
           >
             Prev
           </Button>
@@ -33,7 +33,7 @@ export const Pagination = ({
             color="white"
             _hover={{}}
             _active={{}}
-            size={["sm", "md"]}
+            size="sm"
           >
             Next
           </Button>

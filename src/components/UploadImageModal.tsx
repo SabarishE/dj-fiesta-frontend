@@ -72,19 +72,18 @@ export const UploadImage = ({
     formData.append("ref", "event");
     formData.append("refId", `${eventId}`);
     formData.append("field", "image");
-    // formData.append("source", picture.source);
 
     const res = await fetch(`${API_URL}/api/upload`, {
       method: "POST",
       headers: {
-        "Content-Type": "form-data",
         Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
 
+    console.log("upload response >>>", res);
     if (!res.ok) {
-      if (res.status === 401 || 403) {
+      if (res.status === 401 || res.status === 403) {
         toast({
           title: `Token not provided`,
           status: "error",

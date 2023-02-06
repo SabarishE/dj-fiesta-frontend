@@ -86,7 +86,7 @@ export const getServerSideProps: GetServerSideProps<{
   const start = +page === 1 ? 0 : (+page - 1) * events_per_page;
 
   const res = await fetch(
-    `${API_URL}/api/events?populate=*&_sort=data:ASC&pagination[start]=${start}&pagination[limit]=${events_per_page}`
+    `${API_URL}/api/events?populate=*&sort[0]=date:ASC&pagination[start]=${start}&pagination[limit]=${events_per_page}`
   );
   const data = await res.json();
 

@@ -7,8 +7,12 @@ import {
   useToast,
   Text,
   useDisclosure,
+  Heading,
+  Button,
+  Image,
 } from "@chakra-ui/react";
 import { Layout } from "components/layout/Layout";
+import { UploadImageModal } from "components/UploadImageModal";
 import { API_URL } from "config";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -227,9 +231,16 @@ const EditEventPage = ({
           />
         </form>
 
-        {/*  Image upload bug - Insufficient documentation   */}
+        {/*  Image upload bug    */}
 
-        {/* <Heading size="lg">Event image preview</Heading>
+        {/* <Text
+          fontSize={["18px", "28px"]}
+          fontWeight="semibold"
+          color="blue.800"
+          my={6}
+        >
+          Event image preview
+        </Text>
         {imagePreview ? (
           <Box>
             <Image src={imagePreview} w="250px" h="200px" />
@@ -237,18 +248,18 @@ const EditEventPage = ({
           </Box>
         ) : (
           <Box>
-            Image not uploaded
+            <Box>Image not uploaded</Box>
             <Button onClick={onOpen}>upload image</Button>
           </Box>
         )} */}
       </Box>
-      {/* <UploadImageModal
+      <UploadImageModal
         isOpen={isOpen}
         onClose={onClose}
         eventId={eventId}
         imageUploaded={imageUploaded}
         token={token}
-      /> */}
+      />
     </Layout>
   );
 };

@@ -32,6 +32,7 @@ export const EventItem = ({ event }: { event: EventInterface }) => {
         }
         w={["100%", "150px"]}
         h={["200px", "120px"]}
+        alt="thumbnail"
       />
       <VStack alignItems="flex-start" spacing={1}>
         <Text
@@ -42,11 +43,15 @@ export const EventItem = ({ event }: { event: EventInterface }) => {
           {event.name}
         </Text>
         <Text fontSize={["12px", "14px", "16px"]}>
-          <chakra.span fontWeight="semibold">When : </chakra.span>
+          <chakra.span fontWeight="semibold" fontSize="14px">
+            When :{" "}
+          </chakra.span>
           {new Date(event.date).toDateString()} at {event.time}
         </Text>
         <Text fontSize={["12px", "14px", "16px"]}>
-          <chakra.span fontWeight="semibold">Where : </chakra.span>
+          <chakra.span fontWeight="semibold" fontSize="14px">
+            Where :{" "}
+          </chakra.span>
           {event.venue}
         </Text>
         <Button

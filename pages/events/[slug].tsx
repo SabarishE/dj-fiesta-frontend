@@ -45,6 +45,7 @@ const Event = ({ eventData }: { eventData: EventDataInterface }) => {
                 : "/images/event-default.png"
             }
             my={4}
+            alt={"event-image"}
           />
           <Box mb={4}>
             <Text
@@ -85,7 +86,7 @@ const Event = ({ eventData }: { eventData: EventDataInterface }) => {
           color="blue"
           fontSize="14px"
           cursor="pointer"
-          onClick={() => router.back()}
+          onClick={() => router.push("/events")}
         >
           <ChevronsLeft size="16px" />
           Go back

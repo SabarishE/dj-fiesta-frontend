@@ -2,7 +2,7 @@ import { API_URL } from "config";
 import { NextApiRequest, NextApiResponse } from "next";
 import cookie from "cookie";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const user = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method == "GET") {
     if (!req.headers.cookie) {
       res.status(403).json({ message: "Not authorized" });
@@ -30,3 +30,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).json({ message: `Method ${req.method} Not Allowed` });
   }
 };
+
+export default user;
