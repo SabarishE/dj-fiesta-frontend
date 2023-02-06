@@ -140,6 +140,15 @@ export const getServerSideProps: GetServerSideProps<{
 
   const data = await res.json();
 
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
+  }
+
   const eventData = data.data[0];
 
   return {

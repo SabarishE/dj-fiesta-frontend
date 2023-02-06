@@ -90,6 +90,15 @@ export const getServerSideProps: GetServerSideProps<{
   );
   const data = await res.json();
 
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
+  }
+
   const totalEvents = data.meta.pagination.total;
 
   const events = data.data.map(

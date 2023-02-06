@@ -71,6 +71,15 @@ export async function getServerSideProps() {
   const res = await fetch(`${API_URL}/api/events?populate=*&_sort=data:ASC`);
   const data = await res.json();
 
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
+  }
+
   const events = data.data.map(
     (event: { attributes: EventInterface; id: number }) => {
       return event.attributes;

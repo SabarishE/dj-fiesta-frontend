@@ -92,6 +92,15 @@ export const getServerSideProps: GetServerSideProps<{
   const res = await fetch(`${API_URL}/api/events?populate=*&${query}`);
   const data = await res.json();
 
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
+    };
+  }
+
   const events = data.data.map(
     (event: { attributes: EventInterface; id: number }) => {
       return event.attributes;
