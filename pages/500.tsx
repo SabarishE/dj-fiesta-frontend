@@ -5,7 +5,7 @@ import Link from "next/link";
 const InternalServerError = () => {
   return (
     <Layout title="404">
-      <Heading>404 , Sorry there is nothing in here</Heading>
+      <Heading>500 , Sorry an interna; server error occured</Heading>
       <Link href="/">Go back home</Link>
     </Layout>
   );
