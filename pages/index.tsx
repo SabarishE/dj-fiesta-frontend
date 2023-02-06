@@ -7,15 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import { EventItem } from "components/EventItem";
 import { useRouter } from "next/router";
 
-export default function Home({
-  events,
-  url,
-}: {
-  events: EventInterface[];
-  url: string;
-}) {
-  console.log("url >>", url);
-
+export default function Home({ events }: { events: EventInterface[] }) {
   const [hydrated, setHydrated] = useState(false);
   const router = useRouter();
 
@@ -80,9 +72,10 @@ export async function getServerSideProps() {
   const data = await res.json();
 
   if (!data) {
+    console.log("url >>", API_URL);
     return {
       redirect: {
-        destination: "/500",
+        destination: `/500/${API_URL}`,
         permanent: false,
       },
     };
@@ -95,6 +88,6 @@ export async function getServerSideProps() {
   );
 
   return {
-    props: { events, url: API_URL },
+    props: { events },
   };
 }
