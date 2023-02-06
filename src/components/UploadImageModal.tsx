@@ -81,7 +81,6 @@ export const UploadImage = ({
       body: formData,
     });
 
-    console.log("upload response >>>", res);
     if (!res.ok) {
       if (res.status === 401 || res.status === 403) {
         toast({

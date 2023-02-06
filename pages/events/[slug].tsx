@@ -16,8 +16,6 @@ const Event = ({ eventData }: { eventData: EventDataInterface }) => {
 
   if (router.isFallback) return null;
 
-  console.log("event selected", eventData);
-
   const event = eventData.attributes;
 
   return (
