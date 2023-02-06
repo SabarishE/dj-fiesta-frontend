@@ -1,27 +1,23 @@
 import { Text, Image, Box, useToast, chakra } from "@chakra-ui/react";
 import { Layout } from "components/layout/Layout";
 import { API_URL } from "config";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { EventDataInterface, EventInterface } from "types/event";
 import { ChevronsLeft } from "@emotion-icons/boxicons-regular/ChevronsLeft";
-
-interface PathsInterface {
-  params: ParamsInterface;
-}
 
 interface ParamsInterface extends ParsedUrlQuery {
   slug: string;
 }
 
 const Event = ({ eventData }: { eventData: EventDataInterface }) => {
-  const toast = useToast();
   const router = useRouter();
 
   if (router.isFallback) return null;
 
-  const eventId = eventData.id;
+  console.log("event selected", eventData);
+
   const event = eventData.attributes;
 
   return (
@@ -98,37 +94,55 @@ const Event = ({ eventData }: { eventData: EventDataInterface }) => {
 
 export default Event;
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${API_URL}/api/events`);
-  const data = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${API_URL}/api/events`);
+//   const data = await res.json();
 
-  const paths = data.data.map(
-    (event: { attributes: EventInterface; id: number }) => ({
-      params: {
-        slug: event.attributes.slug,
-      },
-    })
-  );
+//   const paths = data.data.map(
+//     (event: { attributes: EventInterface; id: number }) => ({
+//       params: {
+//         slug: event.attributes.slug,
+//       },
+//     })
+//   );
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<{
+// export const getStaticProps: GetStaticProps<{
+//   eventData: EventDataInterface;
+// }> = async (context) => {
+//   const { slug } = context.params as ParamsInterface;
+
+//   const res = await fetch(
+//     `${API_URL}/api/events?filters[slug][$eq]=${slug}&populate=*`
+//   );
+//   const data = await res.json();
+//   const eventData = data.data[0];
+
+//   return {
+//     props: { eventData },
+//     revalidate: 1,
+//   };
+// };
+
+export const getServerSideProps: GetServerSideProps<{
   eventData: EventDataInterface;
 }> = async (context) => {
-  const { slug } = context.params as ParamsInterface;
+  const { slug } = context.query as ParamsInterface;
 
   const res = await fetch(
     `${API_URL}/api/events?filters[slug][$eq]=${slug}&populate=*`
   );
+
   const data = await res.json();
+
   const eventData = data.data[0];
 
   return {
     props: { eventData },
-    revalidate: 1,
   };
 };
