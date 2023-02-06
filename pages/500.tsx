@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const InternalServerError = () => {
   return (
-    <Layout title="404">
-      <Heading>500 , Sorry an interna; server error occured</Heading>
+    <Layout title="500">
+      <Heading>500 , Sorry an internal server error occured</Heading>
       <Link href="/">Go back home</Link>
     </Layout>
   );

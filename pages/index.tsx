@@ -72,10 +72,9 @@ export async function getServerSideProps() {
   const data = await res.json();
 
   if (!data) {
-    console.log("url >>", API_URL);
     return {
       redirect: {
-        destination: `/500/${API_URL}`,
+        destination: `/500`,
         permanent: false,
       },
     };

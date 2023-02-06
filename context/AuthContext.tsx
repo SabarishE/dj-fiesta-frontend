@@ -98,6 +98,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const data = await res.json();
 
+    if (!data) {
+      return {
+        redirect: {
+          destination: `/500`,
+          permanent: false,
+        },
+      };
+    }
+
     if (res.ok) {
       setUser(data.user);
     } else {
